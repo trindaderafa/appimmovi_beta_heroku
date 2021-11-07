@@ -30,7 +30,6 @@ class Parametro(models.Model):
 
 class Diarista(models.Model):
     usuario = models.ForeignKey(Pessoa, on_delete=models.PROTECT)
-    finalidade = models.ForeignKey(Finalidade, on_delete=models.PROTECT)
     inicio = models.DateTimeField(auto_now=False)
     termino = models.DateTimeField(auto_now=True, null=True, blank=True)
 
@@ -59,7 +58,6 @@ class AtividadeDia(models.Model):
 
 class Mensalista(models.Model):
     usuario = models.ForeignKey(Pessoa, on_delete=models.PROTECT)
-    finalidade = models.ForeignKey(Finalidade, on_delete=models.PROTECT)
     inicio = models.DateTimeField(auto_now=False)
     termino = models.DateTimeField(auto_now=True, null=True, blank=True)
 
