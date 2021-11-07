@@ -1,0 +1,10 @@
+<h2>Lista Atividades Anualistas</h2>
+
+
+<ul>
+{% for atividade_ano in atividades_ano %}
+    <li> {{atividade_ano.anualista}} - {{atividade_ano.finalidade}} </li>
+    <p></p>
+{% endfor %}
+</ul>
+

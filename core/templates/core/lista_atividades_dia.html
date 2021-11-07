@@ -1,0 +1,10 @@
+<h2>Lista Atividades Diaristas</h2>
+
+
+<ul>
+{% for atividade_dia in atividades_dia %}
+    <li> {{atividade_dia.diarista}} - {{atividade_dia.finalidade}} </li>
+    <p></p>
+{% endfor %}
+</ul>
+

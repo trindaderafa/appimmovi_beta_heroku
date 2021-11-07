@@ -1,0 +1,10 @@
+<h2>Lista Atividades Mensalistas</h2>
+
+
+<ul>
+{% for atividade_mes in atividades_mes %}
+    <li> {{atividade_mes.mensalista}} - {{atividade_mes.finalidade}} </li>
+    <p></p>
+{% endfor %}
+</ul>
+
