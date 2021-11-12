@@ -3,8 +3,17 @@
 
 <ul>
 {% for finalidade in finalidades %}
-    <li> {{finalidade.nome}} </li>
+    <li>
+        <a href="{% url 'core_finalidade_update' finalidade.id %}"> {{ finalidade.nome }} </a>
+    </li>
     <p></p>
 {% endfor %}
 </ul>
+
+
+<form action="{% url 'core_finalidade_novo' %}" method="POST">
+    {% csrf_token %}
+    {{ forms.as_p }}
+    <button type="submit">Cadastrar</button>
+</form>
 

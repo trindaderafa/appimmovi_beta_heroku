@@ -1,0 +1,8 @@
+<h2>Atualizando Finalidade: {{ finalidade }}</h2>
+
+
+<form action="{% url 'core_finalidade_update' finalidade.id %}" method="POST">
+    {% csrf_token %}
+    {{ forms.as_p }}
+    <button type="submit">Salvar</button>
+</form>

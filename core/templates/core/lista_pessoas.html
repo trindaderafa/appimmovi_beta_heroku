@@ -3,8 +3,16 @@
 
 <ul>
 {% for pessoa in usuario %}
-    <li> {{pessoa.nome}} </li>
+    <li>
+        <a href="{% url 'core_pessoa_update' pessoa.id %}"> {{ pessoa.nome }} </a>
+    </li>
     <p></p>
 {% endfor %}
 </ul>
 
+
+<form action="{% url 'core_pessoa_novo' %}" method="POST">
+    {% csrf_token %}
+    {{ forms.as_p }}
+    <button type="submit">Cadastrar</button>
+</form>
