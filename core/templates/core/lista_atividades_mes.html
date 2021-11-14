@@ -3,7 +3,9 @@
 
 <ul>
 {% for atividade_mes in atividades_mes %}
-    <li> {{atividade_mes.mensalista}} - {{atividade_mes.finalidade}} </li>
+    <li>
+        <a href="{% url 'core_atividade_mes_update' atividade_mes.id %}"> {{atividade_mes.mensalista}} - {{atividade_mes.finalidade}} </a>
+    </li>
     <p></p>
 {% endfor %}
 </ul>

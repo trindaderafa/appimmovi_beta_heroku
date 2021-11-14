@@ -1,0 +1,8 @@
+<h2>Atualizando Vitalista: {{ vitalista }}</h2>
+
+
+<form action="{% url 'core_vitalista_update' vitalista.id %}" method="POST">
+    {% csrf_token %}
+    {{ forms.as_p }}
+    <button type="submit">Salvar</button>
+</form>

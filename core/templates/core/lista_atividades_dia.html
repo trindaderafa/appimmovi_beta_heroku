@@ -3,7 +3,9 @@
 
 <ul>
 {% for atividade_dia in atividades_dia %}
-    <li> {{atividade_dia.diarista}} - {{atividade_dia.finalidade}} </li>
+    <li>
+        <a href="{% url 'core_atividade_dia_update' atividade_dia.id %}">{{atividade_dia.diarista}} - {{atividade_dia.finalidade}} </a>
+    </li>
     <p></p>
 {% endfor %}
 </ul>

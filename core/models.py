@@ -23,6 +23,7 @@ class Parametro(models.Model):
     valor_dia = models.DecimalField(max_digits=4, decimal_places=2)
     valor_mes = models.DecimalField(max_digits=5, decimal_places=2)
     valor_ano = models.DecimalField(max_digits=6, decimal_places=2)
+    valor_licenca = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
         return 'Parametros de Atividade'
@@ -111,3 +112,30 @@ class AtividadeAno(models.Model):
     def __str__(self):
         return str(self.finalidade.nome) + ' - ' + str(self.anualista.usuario)
 
+
+class Vitalista(models.Model):
+    usuario = models.ForeignKey(Pessoa, on_delete=models.PROTECT)
+    inicio = models.DateTimeField(auto_now=False)
+    termino = models.DateTimeField(auto_now=True, null=True, blank=True)
+
+    def __str__(self):
+        return str(self.usuario)
+
+
+class AtividadeVital(models.Model):
+    vitalista = models.ForeignKey(Vitalista, on_delete=models.PROTECT)
+    finalidade = models.ForeignKey(Finalidade, on_delete=models.PROTECT)
+    valor = models.DecimalField(max_digits=6, decimal_places=2)
+    pago = models.BooleanField(default=False)
+
+    def dias_total(self):
+        return math.ceil(((self.vitalista.termino - self.vitalista.inicio).total_seconds() / 86400) - 1)
+
+    def inicio_ano(self):
+        return self.vitalista.inicio
+
+    def valor_total(self):
+        return math.ceil(self.valor * self.dias_total()/365)
+
+    def __str__(self):
+        return str(self.finalidade.nome) + ' - ' + str(self.vitalista.usuario)

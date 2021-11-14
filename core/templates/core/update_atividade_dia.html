@@ -1,0 +1,8 @@
+<h2>Atualizando Atividade Dia: {{ atividade_dia.diarista }} - {{ atividade_dia.finalidade }} </h2>
+
+
+<form action="{% url 'core_atividade_dia_update' atividade_dia.id %}" method="POST">
+    {% csrf_token %}
+    {{ forms.as_p }}
+    <button type="submit">Salvar</button>
+</form>

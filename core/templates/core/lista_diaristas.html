@@ -3,7 +3,9 @@
 
 <ul>
 {% for diarista in diaristas %}
-    <li> {{diarista.usuario}} </li>
+    <li>
+        <a href="{% url 'core_diarista_update' diarista.id %}"> {{ diarista.usuario }} </a>
+    </li>
     <p></p>
 {% endfor %}
 </ul>

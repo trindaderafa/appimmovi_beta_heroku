@@ -1,0 +1,18 @@
+<h2>Lista Vitalistas</h2>
+
+
+<ul>
+{% for vitalista in vitalistas %}
+    <li>
+        <a href="{% url 'core_vitalista_update' vitalista.id %}"> {{vitalista.usuario}} </a>
+    </li>
+    <p></p>
+{% endfor %}
+</ul>
+
+
+<form action="{% url 'core_vitalista_novo' %}" method="POST">
+    {% csrf_token %}
+    {{ forms.as_p }}
+    <button type="submit">Cadastrar</button>
+</form>

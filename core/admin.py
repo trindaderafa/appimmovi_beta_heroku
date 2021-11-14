@@ -7,8 +7,11 @@ from .models import (Pessoa,
                      Mensalista,
                      AtividadeMes,
                      Anualista,
-                     AtividadeAno
+                     AtividadeAno,
+                     Vitalista,
+                     AtividadeVital,
                      )
+
 
 class AtividadeDiaAdmin(admin.ModelAdmin):
     list_display = ('diarista',
@@ -44,6 +47,16 @@ class AtividadeAnoAdmin(admin.ModelAdmin):
                     )
 
 
+class AtividadeVitalAdmin(admin.ModelAdmin):
+    list_display = ('vitalista',
+                    'finalidade',
+                    'inicio_ano',
+                    'valor',
+                    'dias_total',
+                    'valor_total',
+                    'pago'
+                    )
+
 admin.site.register(Pessoa)
 admin.site.register(Finalidade)
 admin.site.register(Parametro)
@@ -53,5 +66,7 @@ admin.site.register(Mensalista)
 admin.site.register(AtividadeMes, AtividadeMesAdmin)
 admin.site.register(Anualista)
 admin.site.register(AtividadeAno, AtividadeAnoAdmin)
+admin.site.register(Vitalista)
+admin.site.register(AtividadeVital, AtividadeVitalAdmin)
 
 

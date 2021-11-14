@@ -7,6 +7,8 @@ from .models import (Pessoa,
                      AtividadeMes,
                      Anualista,
                      AtividadeAno,
+                     Vitalista,
+                     AtividadeVital,
                      )
 
 class PessoaForm(ModelForm):
@@ -54,4 +56,16 @@ class AnualistaForm(ModelForm):
 class AtividadeAnoForm(ModelForm):
     class Meta:
         model = AtividadeAno
+        fields = '__all__'
+
+
+class VitalistaForm(ModelForm):
+    class Meta:
+        model = Vitalista
+        fields = '__all__'
+
+
+class AtividadeVitalForm(ModelForm):
+    class Meta:
+        model = AtividadeVital
         fields = '__all__'

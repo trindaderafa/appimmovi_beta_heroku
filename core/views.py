@@ -8,6 +8,8 @@ from .models import (Pessoa,
                      AtividadeMes,
                      Anualista,
                      AtividadeAno,
+                     Vitalista,
+                     AtividadeVital,
                      )
 
 from .forms import (PessoaForm,
@@ -18,6 +20,8 @@ from .forms import (PessoaForm,
                     AtividadeMesForm,
                     AnualistaForm,
                     AtividadeAnoForm,
+                    VitalistaForm,
+                    AtividadeVitalForm,
                     )
 
 def home(request):
@@ -45,13 +49,22 @@ def pessoa_update(request, id):
     form = PessoaForm(request.POST or None, instance=pessoa)
     data['pessoa'] = pessoa
     data['forms'] = form
-
     if request.method == 'POST':
         if form.is_valid():
             form.save()
             return redirect('core_lista_pessoas')
     else:
         return render(request, 'core/update_pessoa.html', data)
+
+
+def pessoa_delete(request, id):
+    pessoa = Pessoa.objects.get(id=id)
+    if request.method == 'POST':
+        pessoa.delete()
+        return  redirect('core_lista_pessoas')
+    else:
+        return  render(request, 'core/delete_pessoa.html', {'pessoa':pessoa})
+
 
 def lista_finalidades(request):
     finalidade = Finalidade.objects.all()
@@ -73,7 +86,6 @@ def finalidade_update(request, id):
     form = FinalidadeForm(request.POST or None, instance=finalidade)
     data['finalidade'] = finalidade
     data['forms'] = form
-
     if request.method == 'POST':
         if form.is_valid():
             form.save()
@@ -96,6 +108,20 @@ def diarista_novo(request):
     return redirect('core_lista_diaristas')
 
 
+def diarista_update(request, id):
+    data = {}
+    diarista = Diarista.objects.get(id=id)
+    form = DiaristaForm(request.POST or None, instance=diarista)
+    data['diarista'] = diarista
+    data['forms'] = form
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_lista_diaristas')
+    else:
+        return render(request, 'core/update_diarista.html', data)
+
+
 def lista_atividades_dia(request):
     atividade_dia = AtividadeDia.objects.all()
     form = AtividadeDiaForm()
@@ -108,6 +134,20 @@ def atividade_dia_novo(request):
     if form.is_valid():
         form.save()
     return redirect('core_lista_atividades_dia')
+
+
+def atividade_dia_update(request, id):
+    data = {}
+    atividade_dia = AtividadeDia.objects.get(id=id)
+    form = AtividadeDiaForm(request.POST or None, instance=atividade_dia)
+    data['atividade_dia'] = atividade_dia
+    data['forms'] = form
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_lista_atividades_dia')
+    else:
+        return render(request, 'core/update_atividade_dia.html', data)
 
 
 def lista_mensalistas(request):
@@ -124,6 +164,20 @@ def mensalista_novo(request):
     return redirect('core_lista_mensalistas')
 
 
+def mensalista_update(request, id):
+    data = {}
+    mensalista = Mensalista.objects.get(id=id)
+    form = MensalistaForm(request.POST or None, instance=mensalista)
+    data['mensalista'] = mensalista
+    data['forms'] = form
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_lista_mensalistas')
+    else:
+        return render(request, 'core/update_mensalista.html', data)
+
+
 def lista_atividades_mes(request):
     atividade_mes = AtividadeMes.objects.all()
     form = AtividadeMesForm()
@@ -136,6 +190,20 @@ def atividade_mes_novo(request):
     if form.is_valid():
         form.save()
     return redirect('core_lista_atividades_mes')
+
+
+def atividade_mes_update(request, id):
+    data = {}
+    atividade_mes = AtividadeMes.objects.get(id=id)
+    form = AtividadeMesForm(request.POST or None, instance=atividade_mes)
+    data['atividade_mes'] = atividade_mes
+    data['forms'] = form
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_lista_atividades_mes')
+    else:
+        return render(request, 'core/update_atividade_mes.html', data)
 
 
 def lista_anualistas(request):
@@ -152,6 +220,20 @@ def anualista_novo(request):
     return redirect('core_lista_anualistas')
 
 
+def anualista_update(request, id):
+    data = {}
+    anualista = Anualista.objects.get(id=id)
+    form = AnualistaForm(request.POST or None, instance=anualista)
+    data['anualista'] = anualista
+    data['forms'] = form
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_lista_anualistas')
+    else:
+        return render(request, 'core/update_anualista.html', data)
+
+
 def lista_atividades_ano(request):
     atividade_ano = AtividadeAno.objects.all()
     form = AtividadeAnoForm()
@@ -164,3 +246,73 @@ def atividade_ano_novo(request):
     if form.is_valid():
         form.save()
     return redirect('core_lista_atividades_ano')
+
+
+def atividade_ano_update(request, id):
+    data = {}
+    atividade_ano = AtividadeAno.objects.get(id=id)
+    form = AtividadeAnoForm(request.POST or None, instance=atividade_ano)
+    data['atividade_ano'] = atividade_ano
+    data['forms'] = form
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_lista_atividades_ano')
+    else:
+        return render(request, 'core/update_atividade_ano.html', data)
+
+
+def lista_vitalistas(request):
+    vitalista = Vitalista.objects.all()
+    form = VitalistaForm()
+    data = {'vitalistas': vitalista, 'forms':form}
+    return render(request, 'core/lista_vitalistas.html', data)
+
+
+def vitalista_novo(request):
+    form = VitalistaForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+    return redirect('core_lista_vitalistas')
+
+
+def vitalista_update(request, id):
+    data = {}
+    vitalista = Vitalista.objects.get(id=id)
+    form = VitalistaForm(request.POST or None, instance=vitalista)
+    data['vitalista'] = vitalista
+    data['forms'] = form
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_lista_vitalistas')
+    else:
+        return render(request, 'core/update_vitalista.html', data)
+
+
+def lista_atividades_vital(request):
+    atividade_vital = AtividadeVital.objects.all()
+    form = AtividadeVitalForm()
+    data = {'atividades_vital': atividade_vital, 'forms':form}
+    return render(request, 'core/lista_atividades_vital.html', data)
+
+
+def atividade_vital_novo(request):
+    form = AtividadeVitalForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+    return redirect('core_lista_atividades_vital')
+
+
+def atividade_vital_update(request, id):
+    data = {}
+    atividade_vital = AtividadeVital.objects.get(id=id)
+    form = AtividadeVitalForm(request.POST or None, instance=atividade_vital)
+    data['atividade_vital'] = atividade_vital
+    data['forms'] = form
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_lista_atividades_vital')
+    else:
+        return render(request, 'core/update_atividade_vital.html', data)

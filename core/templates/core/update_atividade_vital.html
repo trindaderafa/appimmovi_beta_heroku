@@ -1,0 +1,8 @@
+<h2>Atualizando Atividade Vitalista: {{ atividade_vital.anualista }} - {{ atividade_vital.finalidade }} </h2>
+
+
+<form action="{% url 'core_atividade_vital_update' atividade_vital.id %}" method="POST">
+    {% csrf_token %}
+    {{ forms.as_p }}
+    <button type="submit">Salvar</button>
+</form>
