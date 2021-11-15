@@ -63,7 +63,7 @@ def pessoa_delete(request, id):
         pessoa.delete()
         return  redirect('core_lista_pessoas')
     else:
-        return  render(request, 'core/delete_pessoa.html', {'pessoa':pessoa})
+        return  render(request, 'core/delete_confirm.html', {'obj':pessoa})
 
 
 def lista_finalidades(request):
@@ -92,6 +92,23 @@ def finalidade_update(request, id):
             return redirect('core_lista_finalidades')
     else:
         return render(request, 'core/update_finalidade.html', data)
+
+def finalidade_delete(request, id):
+    pessoa = Finalidade.objects.get(id=id)
+    if request.method == 'POST':
+        pessoa.delete()
+        return  redirect('core_lista_finalidades')
+    else:
+        return  render(request, 'core/delete_confirm.html', {'obj':pessoa})
+
+
+def finalidade_delete(request, id):
+    finalidade = Finalidade.objects.get(id=id)
+    if request.method == 'POST':
+        finalidade.delete()
+        return redirect('core_lista_finalidades')
+    else:
+        return  render(request, 'core/delete_confirm.html', {'obj':finalidade})
 
 
 def lista_diaristas(request):

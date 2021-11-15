@@ -31,6 +31,7 @@ from .views import (home,
                     vitalista_update,
                     atividade_vital_update,
                     pessoa_delete,
+                    finalidade_delete
                     )
 
 
@@ -44,6 +45,7 @@ urlpatterns = [
     path('finalidades/', lista_finalidades, name='core_lista_finalidades'),
     path('finalidade_novo/', finalidade_novo, name='core_finalidade_novo'),
     path('finalidade_update/<int:id>/', finalidade_update, name='core_finalidade_update'),
+    path('finalidade_delete/<int:id>/', finalidade_delete, name='core_finalidade_delete'),
 
     path('diaristas/', lista_diaristas, name='core_lista_diaristas'),
     path('diarista_novo/', diarista_novo, name='core_diarista_novo'),
