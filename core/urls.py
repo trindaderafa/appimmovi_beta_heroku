@@ -31,7 +31,15 @@ from .views import (home,
                     vitalista_update,
                     atividade_vital_update,
                     pessoa_delete,
-                    finalidade_delete
+                    finalidade_delete,
+                    diarista_delete,
+                    atividade_dia_delete,
+                    mensalista_delete,
+                    atividade_mes_delete,
+                    anualista_delete,
+                    atividade_ano_delete,
+                    vitalista_delete,
+                    atividade_vital_delete,
                     )
 
 
@@ -50,32 +58,40 @@ urlpatterns = [
     path('diaristas/', lista_diaristas, name='core_lista_diaristas'),
     path('diarista_novo/', diarista_novo, name='core_diarista_novo'),
     path('diarista_update/<int:id>/', diarista_update, name='core_diarista_update'),
+    path('diarista_delete/<int:id>/', diarista_delete, name='core_diarista_delete'),
 
     path('atividades_dia/', lista_atividades_dia, name='core_lista_atividades_dia'),
     path('atividade_dia_novo/', atividade_dia_novo, name='core_atividade_dia_novo'),
     path('atividade_dia_update/<int:id>/', atividade_dia_update, name='core_atividade_dia_update'),
+    path('atividade_dia_delete/<int:id>/', atividade_dia_delete, name='core_atividade_dia_delete'),
 
     path('mensalistas/', lista_mensalistas, name='core_lista_mensalistas'),
     path('mensalista_novo/', mensalista_novo, name='core_mensalista_novo'),
     path('mensalista_update/<int:id>/', mensalista_update, name='core_mensalista_update'),
+    path('mensalista_delete/<int:id>/', mensalista_delete, name='core_mensalista_delete'),
 
     path('atividades_mes/', lista_atividades_mes, name='core_lista_atividades_mes'),
     path('atividade_mes_novo/', atividade_mes_novo, name='core_atividade_mes_novo'),
     path('atividade_mes_update/<int:id>/', atividade_mes_update, name='core_atividade_mes_update'),
+    path('atividade_mes_delete/<int:id>/', atividade_mes_delete, name='core_atividade_mes_delete'),
 
     path('anualistas/', lista_anualistas, name='core_lista_anualistas'),
     path('anualista_novo/', anualista_novo, name='core_anualista_novo'),
     path('anualista_update/<int:id>/', anualista_update, name='core_anualista_update'),
+    path('anualista_delete/<int:id>/', anualista_delete, name='core_anualista_delete'),
 
     path('atividades_ano/', lista_atividades_ano, name='core_lista_atividades_ano'),
     path('atividade_ano_novo/', atividade_ano_novo, name='core_atividade_ano_novo'),
     path('atividade_ano_update/<int:id>/', atividade_ano_update, name='core_atividade_ano_update'),
+    path('atividade_ano_delete/<int:id>/', atividade_ano_delete, name='core_atividade_ano_delete'),
 
     path('vitalistas/', lista_vitalistas, name='core_lista_vitalistas'),
     path('vitalista_novo/', vitalista_novo, name='core_vitalista_novo'),
     path('vitalista_update/<int:id>/', vitalista_update, name='core_vitalista_update'),
+    path('vitalista_delete/<int:id>/', vitalista_delete, name='core_vitalista_delete'),
 
     path('atividades_vital/', lista_atividades_vital, name='core_lista_atividades_vital'),
     path('atividade_vital_novo/', atividade_vital_novo, name='core_atividade_vital_novo'),
     path('atividade_vital_update/<int:id>/', atividade_vital_update, name='core_atividade_vital_update'),
+    path('atividade_vital_delete/<int:id>/', atividade_vital_delete, name='core_atividade_vital_delete'),
 ]

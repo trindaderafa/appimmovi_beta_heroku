@@ -61,9 +61,9 @@ def pessoa_delete(request, id):
     pessoa = Pessoa.objects.get(id=id)
     if request.method == 'POST':
         pessoa.delete()
-        return  redirect('core_lista_pessoas')
+        return redirect('core_lista_pessoas')
     else:
-        return  render(request, 'core/delete_confirm.html', {'obj':pessoa})
+        return render(request, 'core/delete_confirm.html', {'obj':pessoa})
 
 
 def lista_finalidades(request):
@@ -93,14 +93,6 @@ def finalidade_update(request, id):
     else:
         return render(request, 'core/update_finalidade.html', data)
 
-def finalidade_delete(request, id):
-    pessoa = Finalidade.objects.get(id=id)
-    if request.method == 'POST':
-        pessoa.delete()
-        return  redirect('core_lista_finalidades')
-    else:
-        return  render(request, 'core/delete_confirm.html', {'obj':pessoa})
-
 
 def finalidade_delete(request, id):
     finalidade = Finalidade.objects.get(id=id)
@@ -108,7 +100,7 @@ def finalidade_delete(request, id):
         finalidade.delete()
         return redirect('core_lista_finalidades')
     else:
-        return  render(request, 'core/delete_confirm.html', {'obj':finalidade})
+        return render(request, 'core/delete_confirm.html', {'obj':finalidade})
 
 
 def lista_diaristas(request):
@@ -139,6 +131,15 @@ def diarista_update(request, id):
         return render(request, 'core/update_diarista.html', data)
 
 
+def diarista_delete(request, id):
+    diarista = Diarista.objects.get(id=id)
+    if request.method == 'POST':
+        diarista.delete()
+        return redirect('core_lista_diaristas')
+    else:
+        return render(request, 'core/delete_confirm.html', {'obj':diarista})
+
+
 def lista_atividades_dia(request):
     atividade_dia = AtividadeDia.objects.all()
     form = AtividadeDiaForm()
@@ -165,6 +166,15 @@ def atividade_dia_update(request, id):
             return redirect('core_lista_atividades_dia')
     else:
         return render(request, 'core/update_atividade_dia.html', data)
+
+
+def atividade_dia_delete(request, id):
+    atividade_dia = AtividadeDia.objects.get(id=id)
+    if request.method == 'POST':
+        atividade_dia.delete()
+        return redirect('core_lista_atividades_dia')
+    else:
+        return render(request, 'core/delete_confirm.html', {'obj':atividade_dia})
 
 
 def lista_mensalistas(request):
@@ -195,6 +205,15 @@ def mensalista_update(request, id):
         return render(request, 'core/update_mensalista.html', data)
 
 
+def mensalista_delete(request, id):
+    mensalista = Mensalista.objects.get(id=id)
+    if request.method == 'POST':
+        mensalista.delete()
+        return redirect('core_lista_mensalistas')
+    else:
+        return render(request, 'core/delete_confirm.html', {'obj':mensalista})
+
+
 def lista_atividades_mes(request):
     atividade_mes = AtividadeMes.objects.all()
     form = AtividadeMesForm()
@@ -221,6 +240,15 @@ def atividade_mes_update(request, id):
             return redirect('core_lista_atividades_mes')
     else:
         return render(request, 'core/update_atividade_mes.html', data)
+
+
+def atividade_mes_delete(request, id):
+    atividade_mes = AtividadeMes.objects.get(id=id)
+    if request.method == 'POST':
+        atividade_mes.delete()
+        return redirect('core_lista_atividades_mes')
+    else:
+        return render(request, 'core/delete_confirm.html', {'obj':atividade_mes})
 
 
 def lista_anualistas(request):
@@ -251,6 +279,15 @@ def anualista_update(request, id):
         return render(request, 'core/update_anualista.html', data)
 
 
+def anualista_delete(request, id):
+    anualista = Anualista.objects.get(id=id)
+    if request.method == 'POST':
+        anualista.delete()
+        return redirect('core_lista_anualistas')
+    else:
+        return render(request, 'core/delete_confirm.html', {'obj':anualista})
+
+
 def lista_atividades_ano(request):
     atividade_ano = AtividadeAno.objects.all()
     form = AtividadeAnoForm()
@@ -277,6 +314,15 @@ def atividade_ano_update(request, id):
             return redirect('core_lista_atividades_ano')
     else:
         return render(request, 'core/update_atividade_ano.html', data)
+
+
+def atividade_ano_delete(request, id):
+    atividade_ano = AtividadeAno.objects.get(id=id)
+    if request.method == 'POST':
+        atividade_ano.delete()
+        return redirect('core_lista_atividades_ano')
+    else:
+        return render(request, 'core/delete_confirm.html', {'obj':atividade_ano})
 
 
 def lista_vitalistas(request):
@@ -307,6 +353,15 @@ def vitalista_update(request, id):
         return render(request, 'core/update_vitalista.html', data)
 
 
+def vitalista_delete(request, id):
+    vitalista = Vitalista.objects.get(id=id)
+    if request.method == 'POST':
+        vitalista.delete()
+        return redirect('core_lista_vitalistas')
+    else:
+        return render(request, 'core/delete_confirm.html', {'obj':vitalista})
+
+
 def lista_atividades_vital(request):
     atividade_vital = AtividadeVital.objects.all()
     form = AtividadeVitalForm()
@@ -333,3 +388,14 @@ def atividade_vital_update(request, id):
             return redirect('core_lista_atividades_vital')
     else:
         return render(request, 'core/update_atividade_vital.html', data)
+
+
+def atividade_vital_delete(request, id):
+    atividade_vital = AtividadeVital.objects.get(id=id)
+    if request.method == 'POST':
+        atividade_vital.delete()
+        return redirect('core_lista_atividades_vital')
+    else:
+        return render(request, 'core/delete_confirm.html', {'obj':atividade_vital})
+
+
