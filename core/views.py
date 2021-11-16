@@ -25,7 +25,7 @@ from .forms import (PessoaForm,
                     )
 
 def home(request):
-    context = {'mensagem': 'Ola mundo de novo'}
+    context = {'mensagem': 'Plataforma online integrada de valuation de imóveis'}
     return render(request, 'core/index.html', context)
 
 
@@ -174,7 +174,8 @@ def atividade_dia_delete(request, id):
         atividade_dia.delete()
         return redirect('core_lista_atividades_dia')
     else:
-        return render(request, 'core/delete_confirm.html', {'obj':atividade_dia})
+        return render(request, 'core/delete_confirm.html',
+                      {'obj':atividade_dia})
 
 
 def lista_mensalistas(request):
@@ -248,7 +249,8 @@ def atividade_mes_delete(request, id):
         atividade_mes.delete()
         return redirect('core_lista_atividades_mes')
     else:
-        return render(request, 'core/delete_confirm.html', {'obj':atividade_mes})
+        return render(request, 'core/delete_confirm.html',
+                      {'obj':atividade_mes})
 
 
 def lista_anualistas(request):
@@ -322,7 +324,8 @@ def atividade_ano_delete(request, id):
         atividade_ano.delete()
         return redirect('core_lista_atividades_ano')
     else:
-        return render(request, 'core/delete_confirm.html', {'obj':atividade_ano})
+        return render(request, 'core/delete_confirm.html',
+                      {'obj':atividade_ano})
 
 
 def lista_vitalistas(request):
@@ -396,6 +399,7 @@ def atividade_vital_delete(request, id):
         atividade_vital.delete()
         return redirect('core_lista_atividades_vital')
     else:
-        return render(request, 'core/delete_confirm.html', {'obj':atividade_vital})
+        return render(request, 'core/delete_confirm.html',
+                      {'obj':atividade_vital})
 
 
