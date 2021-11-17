@@ -25,7 +25,8 @@ from .forms import (PessoaForm,
                     )
 
 def home(request):
-    context = {'mensagem': 'Plataforma online integrada de valuation de imóveis'}
+    context = {'mensagem': 'Plataforma online integrada de valuation de imóveis'
+                           ' - Sistema de Gestão da Aplicação Web'}
     return render(request, 'core/index.html', context)
 
 
