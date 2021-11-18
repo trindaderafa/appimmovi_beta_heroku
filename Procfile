@@ -1,1 +1,1 @@
-web: gunicorn teste_mvp.wsgi
+web:gunicorn teste_mvp.wsgi
