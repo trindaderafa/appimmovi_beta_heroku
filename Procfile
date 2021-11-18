@@ -1,1 +1,1 @@
-web: gunicorn teste_mvp.wsgi:application --log-file
+web: gunicorn teste_mvp.wsgi
