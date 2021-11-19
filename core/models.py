@@ -6,7 +6,7 @@ class Pessoa(models.Model):
     nome = models.CharField(max_length=100)
     telefone = models.CharField(max_length=20)
     email = models.EmailField()
-    profissao = models.CharField(max_length=100)
+    profissão = models.CharField(max_length=100)
 
     def __str__(self):
         return self.nome

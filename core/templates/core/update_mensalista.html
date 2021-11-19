@@ -1,3 +1,7 @@
+{%  extends 'base.html' %}
+
+{% block main %}
+
 <h2>Atualizando Mensalista: {{ mensalista }}</h2>
 
 
@@ -8,3 +12,5 @@
 </form>
 
 <a href="{% url 'core_mensalista_delete' mensalista.id %}">Deletar</a>
+
+{% endblock %}

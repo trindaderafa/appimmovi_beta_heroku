@@ -1,3 +1,7 @@
+{%  extends 'base.html' %}
+
+{% block main %}
+
 <h2>Lista Atividades Anualistas</h2>
 
 
@@ -10,9 +14,10 @@
 {% endfor %}
 </ul>
 
-
 <form action="{% url 'core_atividade_ano_novo' %}" method="POST">
     {% csrf_token %}
     {{ forms.as_p }}
     <button type="submit">Cadastrar</button>
 </form>
+
+{% endblock %}

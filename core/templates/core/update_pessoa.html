@@ -1,10 +1,20 @@
-<h2>Atualizando Pessoa: {{ pessoa }}</h2>
+<title>Atualização do usuário</title>
 
+{%  extends 'base.html' %}
+{% load bootstrap %}
 
-<form action="{% url 'core_pessoa_update' pessoa.id %}" method="POST">
-    {% csrf_token %}
-    {{ forms.as_p }}
-    <button type="submit">Salvar</button>
-</form>
-
-<a href="{% url 'core_pessoa_delete' pessoa.id %}">Deletar</a>
+{% block main %}
+<div class="row">
+    <div class="col-4">
+        <p></p>
+        <h3 class="p-1 mb-2 bg-secondary text-white">Atualizando Pessoa: {{ pessoa }}</h3>
+        <form action="{% url 'core_pessoa_update' pessoa.id %}" method="POST">
+            {% csrf_token %}
+            {{ forms|bootstrap }}
+            <p></p>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a href="{% url 'core_pessoa_delete' pessoa.id %}" class="btn btn-danger">Deletar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

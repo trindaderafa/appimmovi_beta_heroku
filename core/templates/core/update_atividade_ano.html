@@ -1,3 +1,7 @@
+{%  extends 'base.html' %}
+
+{% block main %}
+
 <h2>Atualizando Atividade Ano: {{ atividade_ano.anualista }} - {{ atividade_ano.finalidade }} </h2>
 
 
@@ -8,3 +12,5 @@
 </form>
 
 <a href="{% url 'core_atividade_ano_delete' atividade_ano.id %}">Deletar</a>
+
+{% endblock %}
