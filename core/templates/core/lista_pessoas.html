@@ -14,23 +14,35 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-4">
-            <ul class="list-group">
+        <div class="col-sm-6 table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Telefone</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Profissão</th>
+                </tr>
+              </thead>
+              <tbody>
                 {% for pessoa in usuario %}
-                    <li class="list-group-item list-group-item-action list-group-item-light" style="height: 50px">
-                        <p></p>
-                        <a href="{% url 'core_pessoa_update' pessoa.id %}"
-                            class="text-decoration-none text-dark"> {{ pessoa.nome }}
-                        </a>
-                        <p></p>
-                    </li>
+                    <tr>
+                      <th scope="row">{{ pessoa.id }}</th>
+                      <td ><a href="{% url 'core_pessoa_update' pessoa.id %}"
+                             class="link-primary"> {{ pessoa.nome }} </a></td>
+                      <td>{{ pessoa.telefone }}</td>
+                      <td>{{ pessoa.email }}</td>
+                      <td>{{ pessoa.profissão }}</td>
+                    </tr>
                 {% endfor %}
-            </ul>
+              </tbody>
+            </table>
         </div>
 
-        <div class="col-sm-4">
+        <div class="col-sm-4 offset-md-1">
             <p></p>
-            <h4 class="text-primary"> Novo usuário</h4>
+            <h4 class="text-primary"> Cadastrar</h4>
             <p></p>
             <form action="{% url 'core_pessoa_novo' %}" method="POST">
                 {% csrf_token %}
