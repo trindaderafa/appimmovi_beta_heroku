@@ -6,13 +6,39 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sistema de Gestão da Aplicação Web</title>
+    <link rel="shortcut icon" href="#">
 </head>
 <body>
 
 {%  extends 'base.html' %}
+
+{% block menu %}
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'core_home' %}">Home</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Gestão</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="{% url 'core_lista_pessoas' %}">Usuários</a></li>
+          <li><a class="dropdown-item" href="{% url 'core_lista_finalidades' %}">Serviços</a></li>
+          <li><a class="dropdown-item" href="{% url 'core_lista_diaristas' %}">Diaristas</a></li>
+          <li><a class="dropdown-item" href="{% url 'core_lista_mensalistas' %}">Mensalistas</a></li>
+          <li><a class="dropdown-item" href="{% url 'core_lista_anualistas' %}">Anualistas</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="{% url 'core_lista_vitalistas' %}">Lic. Vitalícia</a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="">Logout</a>
+      </li>
+    </ul>
+{% endblock %}
+
 {% block main %}
 <div class="row">
     <div class="col">
+        <p></p>
         <a href="https://appimmovi.cc/" class="navbar-brand" rel="home"
                 aria-current="page"><img width="200" height="32"
                                          src="https://appimmovi.cc/wp-content/uploads/2020/04/cropped-Logo-appimmovi.png"

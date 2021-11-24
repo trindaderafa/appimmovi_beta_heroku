@@ -1,24 +1,55 @@
+<title>Lista de Anualistas</title>
+
 {%  extends 'base.html' %}
+{% load bootstrap %}
 
 {% block main %}
+        <div class="row">
+                <div class="col-12">
+                    <p></p>
+                     <h3 class="p-1 mb-2 bg-secondary text-white">Lista anualistas</h3>
+                        <p></p>
+                </div>
+        </div>
 
-<h2>Lista Anualistas</h2>
+     <div class="row">
+        <div class="col-sm-6 table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Usuário</th>
+                  <th scope="col">Início</th>
+                  <th scope="col">Término</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for anualista in anualistas %}
+                    <tr>
+                      <th scope="row">{{ anualista.id }}</th>
+                      <td ><a href="{% url 'core_anualista_update' anualista.id %}"
+                             class="link-primary"> {{ anualista.usuario }} </a></td>
+                      <td>{{ anualista.inicio }}</td>
+                      <td>{{ anualista.termino }}</td>
+                    </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
 
-
-<ul>
-{% for anualista in anualistas %}
-    <li>
-        <a href="{% url 'core_anualista_update' anualista.id %}"> {{anualista.usuario}} </a>
-    </li>
-    <p></p>
-{% endfor %}
-</ul>
-
-
-<form action="{% url 'core_anualista_novo' %}" method="POST">
-    {% csrf_token %}
-    {{ forms.as_p }}
-    <button type="submit">Cadastrar</button>
-</form>
+        <div class="col-sm-4 offset-md-1">
+            <p></p>
+            <h4 class="text-primary"> Cadastrar</h4>
+            <p></p>
+            <form action="{% url 'core_anualista_novo' %}" method="POST">
+                {% csrf_token %}
+                {{ forms|bootstrap }}
+                <p></p>
+                <button type="submit" class="btn btn-primary">
+                    Cadastrar</button>
+            </form>
+        </div>
+     </div>
 
 {% endblock %}
+

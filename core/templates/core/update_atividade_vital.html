@@ -1,16 +1,23 @@
+<title>Atualização de Atividade do Vitalista</title>
+
 {%  extends 'base.html' %}
+{% load bootstrap %}
 
 {% block main %}
 
-<h2>Atualizando Atividade Vitalista: {{ atividade_vital.anualista }} - {{ atividade_vital.finalidade }} </h2>
-
-
-<form action="{% url 'core_atividade_vital_update' atividade_vital.id %}" method="POST">
-    {% csrf_token %}
-    {{ forms.as_p }}
-    <button type="submit">Salvar</button>
-</form>
-
-<a href="{% url 'core_atividade_vital_delete' atividade_vital.id %}">Deletar</a>
+<div class="row">
+        <div class="col-4">
+            <p></p>
+            <h3 class="p-1 mb-2 bg-secondary text-white">Atualizando Atividade Vitalista:
+                {{ atividade_vital.vitalista }} - {{ atividade_vital.finalidade }}</h3>
+            <form action="{% url 'core_atividade_vital_update' atividade_vital.id %}" method="POST">
+                {% csrf_token %}
+                {{ forms|bootstrap }}
+                <p></p>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <a href="{% url 'core_atividade_vital_delete' atividade_vital.id %}" class="btn btn-danger">Deletar</a>
+            </form>
+        </div>
+    </div>
 
 {% endblock %}

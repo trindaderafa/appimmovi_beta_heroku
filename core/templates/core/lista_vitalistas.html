@@ -1,24 +1,55 @@
+<title>Lista de Vitalistas</title>
+
 {%  extends 'base.html' %}
+{% load bootstrap %}
 
 {% block main %}
 
-<h2>Lista Vitalistas</h2>
+    <div class="row">
+            <div class="col-12">
+                <p></p>
+                 <h3 class="p-1 mb-2 bg-secondary text-white">Lista vitalistas</h3>
+                    <p></p>
+            </div>
+    </div>
 
+     <div class="row">
+        <div class="col-sm-6 table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Usuário</th>
+                  <th scope="col">Início</th>
+                  <th scope="col">Término</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for vitalista in vitalistas %}
+                    <tr>
+                      <th scope="row">{{ vitalista.id }}</th>
+                      <td ><a href="{% url 'core_vitalista_update' vitalista.id %}"
+                             class="link-primary"> {{ vitalista.usuario }} </a></td>
+                      <td>{{ vitalista.inicio }}</td>
+                      <td>{{ vitalista.termino }}</td>
+                    </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
 
-<ul>
-{% for vitalista in vitalistas %}
-    <li>
-        <a href="{% url 'core_vitalista_update' vitalista.id %}"> {{vitalista.usuario}} </a>
-    </li>
-    <p></p>
-{% endfor %}
-</ul>
-
-
-<form action="{% url 'core_vitalista_novo' %}" method="POST">
-    {% csrf_token %}
-    {{ forms.as_p }}
-    <button type="submit">Cadastrar</button>
-</form>
+        <div class="col-sm-4 offset-md-1">
+            <p></p>
+            <h4 class="text-primary"> Cadastrar</h4>
+            <p></p>
+            <form action="{% url 'core_vitalista_novo' %}" method="POST">
+                {% csrf_token %}
+                {{ forms|bootstrap }}
+                <p></p>
+                <button type="submit" class="btn btn-primary">
+                    Cadastrar</button>
+            </form>
+        </div>
+     </div>
 
 {% endblock %}

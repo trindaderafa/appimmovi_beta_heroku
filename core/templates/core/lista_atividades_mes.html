@@ -1,19 +1,66 @@
-<h2>Lista Atividades Mensalistas</h2>
+<title>Lista de Atividades dos Mensalistas</title>
 
+{%  extends 'base.html' %}
+{% load bootstrap %}
 
-<ul>
-{% for atividade_mes in atividades_mes %}
-    <li>
-        <a href="{% url 'core_atividade_mes_update' atividade_mes.id %}"> {{atividade_mes.mensalista}} - {{atividade_mes.finalidade}} </a>
-    </li>
-    <p></p>
-{% endfor %}
-</ul>
+{% block main %}
 
+    <div class="row">
+            <div class="col-12">
+                <p></p>
+                 <h3 class="p-1 mb-2 bg-secondary text-white">Lista atividades mensalistas</h3>
+                <p></p>
+            </div>
+    </div>
 
-<form action="{% url 'core_atividade_mes_novo' %}" method="POST">
-    {% csrf_token %}
-    {{ forms.as_p }}
-    <button type="submit">Cadastrar</button>
-</form>
+     <div class="row">
+        <div class="col-sm-6 table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Mensalista</th>
+                  <th scope="col">Serviço</th>
+                  <th scope="col">Dias</th>
+                  <th scope="col">Meses</th>
+                  <th scope="col">Valor Mensal</th>
+                  <th scope="col">Valor Total</th>
+                  <th scope="col">Pago</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for atividade_mes in atividades_mes %}
+                    <tr>
+                      <th scope="row">{{ atividade_mes.id }}</th>
+                      <td ><a href="{% url 'core_atividade_mes_update' atividade_mes.id %}"
+                             class="link-primary"> {{atividade_mes.mensalista}} </a>
+                      </td>
+                      <td>{{ atividade_mes.finalidade }}</td>
+                      <td>{{ atividade_mes.dias_total }}</td>
+                      <td>{{ atividade_mes.mes_total }}</td>
+                      <td>R$ {{ atividade_mes.valor_mes }}</td>
+                      <td>R$ {{ atividade_mes.valor_total }}</td>
+                      <td>{{ atividade_mes.pago }}</td>
+                    </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+
+        <div class="col-sm-4 offset-md-1">
+            <p></p>
+            <h4 class="text-primary"> Cadastrar</h4>
+            <p></p>
+            <form action="{% url 'core_atividade_mes_novo' %}" method="POST">
+                {% csrf_token %}
+                {{ forms|bootstrap }}
+                <p></p>
+                <button type="submit" class="btn btn-primary">
+                    Cadastrar</button>
+            </form>
+        </div>
+     </div>
+
+{% endblock %}
+
 

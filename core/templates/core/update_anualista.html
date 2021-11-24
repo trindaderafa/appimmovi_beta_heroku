@@ -1,16 +1,22 @@
+<title>Atualização do anualista</title>
+
 {%  extends 'base.html' %}
+{% load bootstrap %}
 
 {% block main %}
 
-<h2>Atualizando Anualista: {{ anualista }}</h2>
-
-
-<form action="{% url 'core_anualista_update' anualista.id %}" method="POST">
-    {% csrf_token %}
-    {{ forms.as_p }}
-    <button type="submit">Salvar</button>
-</form>
-
-<a href="{% url 'core_anualista_delete' anualista.id %}">Deletar</a>
+    <div class="row">
+        <div class="col-4">
+            <p></p>
+            <h3 class="p-1 mb-2 bg-secondary text-white">Atualizando Anualista: {{ anualista }}</h3>
+            <form action="{% url 'core_anualista_update' anualista.id %}" method="POST">
+                {% csrf_token %}
+                {{ forms|bootstrap }}
+                <p></p>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <a href="{% url 'core_anualista_delete' anualista.id %}" class="btn btn-danger">Deletar</a>
+            </form>
+        </div>
+    </div>
 
 {% endblock %}

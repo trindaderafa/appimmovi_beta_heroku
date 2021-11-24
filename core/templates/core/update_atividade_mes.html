@@ -1,16 +1,23 @@
+<title>Atualização de Atividade do Mensalista</title>
+
 {%  extends 'base.html' %}
+{% load bootstrap %}
 
 {% block main %}
 
-<h2>Atualizando Atividade Mês: {{ atividade_mes.mensalista }} - {{ atividade_mes.finalidade }} </h2>
-
-
-<form action="{% url 'core_atividade_mes_update' atividade_mes.id %}" method="POST">
-    {% csrf_token %}
-    {{ forms.as_p }}
-    <button type="submit">Salvar</button>
-</form>
-
-<a href="{% url 'core_atividade_mes_delete' atividade_mes.id %}">Deletar</a>
+<div class="row">
+        <div class="col-4">
+            <p></p>
+            <h3 class="p-1 mb-2 bg-secondary text-white">Atualizando Atividade Mensalista:
+                {{ atividade_mes.mensalista }} - {{ atividade_mes.finalidade }}</h3>
+            <form action="{% url 'core_atividade_mes_update' atividade_mes.id %}" method="POST">
+                {% csrf_token %}
+                {{ forms|bootstrap }}
+                <p></p>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <a href="{% url 'core_atividade_mes_delete' atividade_mes.id %}" class="btn btn-danger">Deletar</a>
+            </form>
+        </div>
+    </div>
 
 {% endblock %}

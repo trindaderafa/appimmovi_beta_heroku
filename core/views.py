@@ -136,7 +136,7 @@ def diarista_delete(request, id):
         diarista.delete()
         return redirect('core_lista_diaristas')
     else:
-        return render(request, 'core/delete_confirm.html', {'obj':diarista})
+        return render(request, 'core/delete_confirm.html', {'obj': diarista})
 
 
 def lista_atividades_dia(request):

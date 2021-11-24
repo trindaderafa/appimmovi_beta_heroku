@@ -15,6 +15,10 @@ class PessoaForm(ModelForm):
     class Meta:
         model = Pessoa
         fields = '__all__'
+        labels = {
+            'profissao': 'Profissão',
+            'area_atuacao': 'Área de Atuação'
+        }
 
 
 class FinalidadeForm(ModelForm):
@@ -33,6 +37,9 @@ class AtividadeDiaForm(ModelForm):
     class Meta:
         model = AtividadeDia
         fields = '__all__'
+        labels = {
+            'finalidade': 'Serviço',
+        }
 
 
 class MensalistaForm(ModelForm):
@@ -45,6 +52,9 @@ class AtividadeMesForm(ModelForm):
     class Meta:
         model = AtividadeMes
         fields = '__all__'
+        labels = {
+            'finalidade': 'Serviço',
+        }
 
 
 class AnualistaForm(ModelForm):
@@ -69,3 +79,6 @@ class AtividadeVitalForm(ModelForm):
     class Meta:
         model = AtividadeVital
         fields = '__all__'
+        labels = {
+            'finalidade': 'Serviço',
+        }

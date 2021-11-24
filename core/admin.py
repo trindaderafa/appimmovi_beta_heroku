@@ -30,10 +30,10 @@ class AtividadeMesAdmin(admin.ModelAdmin):
                     'inicio_mes',
                     'valor_mes',
                     'dias_total',
+                    'mes_total',
                     'valor_total',
                     'pago'
                     )
-
 
 
 class AtividadeAnoAdmin(admin.ModelAdmin):
@@ -42,6 +42,7 @@ class AtividadeAnoAdmin(admin.ModelAdmin):
                     'inicio_ano',
                     'valor_ano',
                     'dias_total',
+                    'anos_total',
                     'valor_total',
                     'pago'
                     )
@@ -50,12 +51,12 @@ class AtividadeAnoAdmin(admin.ModelAdmin):
 class AtividadeVitalAdmin(admin.ModelAdmin):
     list_display = ('vitalista',
                     'finalidade',
-                    'inicio_ano',
+                    'inicio',
                     'valor',
                     'dias_total',
-                    'valor_total',
                     'pago'
                     )
+
 
 admin.site.register(Pessoa)
 admin.site.register(Finalidade)

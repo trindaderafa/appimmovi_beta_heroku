@@ -1,16 +1,22 @@
+<title>Atualização do diarista</title>
+
 {%  extends 'base.html' %}
+{% load bootstrap %}
 
 {% block main %}
 
-<h2>Atualizando Diarista: {{ diarista }}</h2>
-
-
-<form action="{% url 'core_diarista_update' diarista.id %}" method="POST">
-    {% csrf_token %}
-    {{ forms.as_p }}
-    <button type="submit">Salvar</button>
-</form>
-
-<a href="{% url 'core_diarista_delete' diarista.id %}">Deletar</a>
+    <div class="row">
+        <div class="col-4">
+            <p></p>
+            <h3 class="p-1 mb-2 bg-secondary text-white">Atualizando Diarista: {{ diarista }}</h3>
+            <form action="{% url 'core_diarista_update' diarista.id %}" method="POST">
+                {% csrf_token %}
+                {{ forms|bootstrap }}
+                <p></p>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <a href="{% url 'core_diarista_delete' diarista.id %}" class="btn btn-danger">Deletar</a>
+            </form>
+        </div>
+    </div>
 
 {% endblock %}
