@@ -3,46 +3,48 @@
 
 {% block main %}
 
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
-
-{% if next %}
-    {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-    {% else %}
-    <p>Please login to see this page.</p>
+    {% if form.errors %}
+    <p>Your username and password didn't match. Please try again.</p>
     {% endif %}
-{% endif %}
+
+    {% if next %}
+        {% if user.is_authenticated %}
+        <p>Your account doesn't have access to this page. To proceed,
+        please login with an account that has access.</p>
+        {% else %}
+        <p>Please login to see this page.</p>
+        {% endif %}
+    {% endif %}
 
 
+    <div class="container-fluid centered col-md-3 d-flex">
+        <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+            <br>
+            <br>
+            <br>
+            <br>
+            <h5 class="text-primary text-center">Acesso ao sistema</h5>
+            <div class="form-group">
+                <input type="text" name="username" autofocus autocomplete="username"
+                       maxlength="150" required id="id_username" class="form-control" placeholder="Usuário">
+            </div>
+            <br>
 
-<div class="container-fluid centered col-md-3">
-    <form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-        <table>
-            <tr>
-                <td>{{ form.username.label_tag }}</td>
-                <td>{{ form.username }}</td>
-            </tr>
+            <div class="form-group">
+            <input type="password" name="password" autocomplete="current-password"
+                   required id="id_password" class="form-control" placeholder="Senha">
+            </div>
+            <br>
 
-            <tr>
-                <td>{{ form.password.label_tag }}</td>
-                <td>{{ form.password }}</td>
-            </tr>
-        </table>
-        <button type="submit" class="btn btn-primary">Login</button>
-        <input type="hidden" name="next" value="{{ next }}">
-    </form>
-</div>
+            <button type="submit" class="btn btn-primary">Entrar</button>
+            <input type="hidden" name="next" value="{{ next }}">
+        </form>
+    </div>
 
 
-
-
-
-{# Assumes you setup the password_reset view in your URLconf #}
-<!-- Ainda não foi implantado sistema de recuperação de senha -->
-<!-- <p><a href="{% url 'password_reset' %}">Lost password?</a></p> -->
+    {# Assumes you setup the password_reset view in your URLconf #}
+    <!-- Ainda não foi implantado sistema de recuperação de senha -->
+    <!-- <p><a href="{% url 'password_reset' %}">Lost password?</a></p> -->
 
 {% endblock %}
