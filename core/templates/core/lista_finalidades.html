@@ -3,6 +3,42 @@
 {%  extends 'base.html' %}
 {% load bootstrap %}
 
+{% block menu %}
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'core_home' %}">Início</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Gestão</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="{% url 'core_lista_pessoas' %}">Usuários</a></li>
+          <li><a class="dropdown-item" href="{% url 'core_lista_finalidades' %}">Serviços</a></li>
+          <li><a class="dropdown-item" href="{% url 'core_lista_diaristas' %}">Diaristas</a></li>
+          <li><a class="dropdown-item" href="{% url 'core_lista_mensalistas' %}">Mensalistas</a></li>
+          <li><a class="dropdown-item" href="{% url 'core_lista_anualistas' %}">Anualistas</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="{% url 'core_lista_vitalistas' %}">Lic. Vitalícia</a></li>
+        </ul>
+      </li>
+
+
+    {% if user.is_authenticated %}
+         <li class="nav-item">
+            <a class="nav-link disabled" href="">Olá {{ user }}!</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+        </li>
+
+    {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+        </li>
+    {% endif %}
+    </ul>
+{% endblock %}
+
 {% block main %}
 
  <div class="row">

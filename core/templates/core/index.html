@@ -15,7 +15,7 @@
 {% block menu %}
     <ul class="nav nav-tabs">
       <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="{% url 'core_home' %}">Home</a>
+        <a class="nav-link active" aria-current="page" href="{% url 'core_home' %}">Início</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Gestão</a>
@@ -29,9 +29,22 @@
           <li><a class="dropdown-item" href="{% url 'core_lista_vitalistas' %}">Lic. Vitalícia</a></li>
         </ul>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">Logout</a>
-      </li>
+
+
+    {% if user.is_authenticated %}
+         <li class="nav-item">
+            <a class="nav-link disabled" href="">Olá {{ user }}!</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+        </li>
+
+    {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+        </li>
+    {% endif %}
     </ul>
 {% endblock %}
 
@@ -47,7 +60,7 @@
         <p></p>
         <h4 class="text-dark">Sistema de Gestão da Aplicação Web</h4>
         <p></p><p></p>
-        <a href="/admin/login/?next=/sistema/" class="btn btn-primary">Clique aqui para entrar</a>
+
     </div>
 </div>
 
