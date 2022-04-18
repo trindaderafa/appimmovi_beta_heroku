@@ -31,7 +31,7 @@ class Parametro(models.Model):
 
 
 class Diarista(models.Model):
-    usuario = models.ForeignKey(Pessoa, on_delete=models.PROTECT)
+    usuario = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
     inicio = models.DateTimeField(auto_now=False)
     termino = models.DateTimeField(auto_now=True, null=True, blank=True)
 
@@ -40,8 +40,8 @@ class Diarista(models.Model):
 
 
 class AtividadeDia(models.Model):
-    diarista = models.ForeignKey(Diarista, on_delete=models.PROTECT)
-    finalidade = models.ForeignKey(Finalidade, on_delete=models.PROTECT, verbose_name='serviço')
+    diarista = models.ForeignKey(Diarista, on_delete=models.CASCADE)
+    finalidade = models.ForeignKey(Finalidade, on_delete=models.CASCADE, verbose_name='serviço')
     valor_dia = models.DecimalField(max_digits=4, decimal_places=2)
     pago = models.BooleanField(default=False)
 
@@ -59,7 +59,7 @@ class AtividadeDia(models.Model):
 
 
 class Mensalista(models.Model):
-    usuario = models.ForeignKey(Pessoa, on_delete=models.PROTECT)
+    usuario = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
     inicio = models.DateTimeField(auto_now=False)
     termino = models.DateTimeField(auto_now=True, null=True, blank=True)
 
@@ -68,8 +68,8 @@ class Mensalista(models.Model):
 
 
 class AtividadeMes(models.Model):
-    mensalista = models.ForeignKey(Mensalista, on_delete=models.PROTECT)
-    finalidade = models.ForeignKey(Finalidade, on_delete=models.PROTECT, verbose_name='serviço')
+    mensalista = models.ForeignKey(Mensalista, on_delete=models.CASCADE)
+    finalidade = models.ForeignKey(Finalidade, on_delete=models.CASCADE, verbose_name='serviço')
     valor_mes = models.DecimalField(max_digits=6, decimal_places=2)
     pago = models.BooleanField(default=False)
 
@@ -90,7 +90,7 @@ class AtividadeMes(models.Model):
 
 
 class Anualista(models.Model):
-    usuario = models.ForeignKey(Pessoa, on_delete=models.PROTECT)
+    usuario = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
     inicio = models.DateTimeField(auto_now=False)
     termino = models.DateTimeField(auto_now=True, null=True, blank=True)
 
@@ -99,8 +99,8 @@ class Anualista(models.Model):
 
 
 class AtividadeAno(models.Model):
-    anualista = models.ForeignKey(Anualista, on_delete=models.PROTECT)
-    finalidade = models.ForeignKey(Finalidade, on_delete=models.PROTECT, verbose_name='serviço')
+    anualista = models.ForeignKey(Anualista, on_delete=models.CASCADE)
+    finalidade = models.ForeignKey(Finalidade, on_delete=models.CASCADE, verbose_name='serviço')
     valor_ano = models.DecimalField(max_digits=6, decimal_places=2)
     pago = models.BooleanField(default=False)
 
@@ -121,7 +121,7 @@ class AtividadeAno(models.Model):
 
 
 class Vitalista(models.Model):
-    usuario = models.ForeignKey(Pessoa, on_delete=models.PROTECT)
+    usuario = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
     inicio = models.DateTimeField(auto_now=False)
     termino = models.DateTimeField(auto_now=True, null=True, blank=True)
 
@@ -130,8 +130,8 @@ class Vitalista(models.Model):
 
 
 class AtividadeVital(models.Model):
-    vitalista = models.ForeignKey(Vitalista, on_delete=models.PROTECT)
-    finalidade = models.ForeignKey(Finalidade, on_delete=models.PROTECT, verbose_name='serviço')
+    vitalista = models.ForeignKey(Vitalista, on_delete=models.CASCADE)
+    finalidade = models.ForeignKey(Finalidade, on_delete=models.CASCADE, verbose_name='serviço')
     valor = models.DecimalField(max_digits=6, decimal_places=2)
     pago = models.BooleanField(default=False)
 
