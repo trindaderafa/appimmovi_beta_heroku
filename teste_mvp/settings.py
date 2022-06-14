@@ -55,6 +55,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+SECURE_REFERRER_POLICY = 'same-origin'
+
 ROOT_URLCONF = 'teste_mvp.urls'
 
 TEMPLATES = [

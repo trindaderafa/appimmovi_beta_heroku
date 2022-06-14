@@ -18,8 +18,8 @@
 
 
     <div class="container-fluid centered col-md-3">
-        <form method="post" action="{% url 'login' %}">
-        {% csrf_token %}
+        <form action="{% url 'login' %}" method="post">{% csrf_token %}>
+
             <br>
             <br>
             <br>

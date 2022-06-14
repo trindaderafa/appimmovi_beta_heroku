@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Appimmovi Search Beta</title>
+    <title>Appimmovi Beta</title>
     <link rel="shortcut icon"
           href="https://appimmovi.cc/wp-content/uploads/2020/04/cropped-Logo-appimmovi_icone_site-32x32.png">
 </head>
@@ -27,8 +27,14 @@
                 <a class="nav-link disabled" href="">Olá {{ user }}!</a>
             </li>
 
-             <li class="nav-item">
-                <a class="nav-link" href="{% url 'core_pesquisa' %}">Pesquisa</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                   role="button" aria-expanded="false" id="gestao-sistema">Valuation</a>
+            <ul class="dropdown-menu">
+               <li><a class="dropdown-item" href="{% url 'core_pesquisa' %}">Pesquisa</a></li>
+                <li><a class="nav-link disabled" href="#">Inferência</a></li>
+                <li><a class="nav-link disabled" href="#">Relatório</a></li>
+            </ul>
             </li>
 
         </li>
@@ -50,13 +56,12 @@
     <div class="col">
         <p></p>
         <a href="https://appimmovi.cc/" class="navbar-brand" rel="home"
-                aria-current="page"><img width="200" height="32"
+                aria-current="page" target="_blank"><img width="200" height="32"
                                          src="https://appimmovi.cc/wp-content/uploads/2020/04/cropped-Logo-appimmovi.png"
                                          class="custom-logo" alt="" /></a>
+        <h6 class="badge bg-primary">Beta</h6>
         <h6>Plataforma online integrada de valuation de imóveis</h6>
-        <p></p>
-        <h5 class="text-dark">Pesquisa Web de Dados de Mercado para Avaliações Imobiliárias</h5>
-        <p></p><p></p>
+        </p><p></p>
 
     </div>
 </div>
@@ -65,3 +70,4 @@
 </html>
 
 {% endblock %}
+
