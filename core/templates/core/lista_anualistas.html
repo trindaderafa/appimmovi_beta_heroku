@@ -44,6 +44,8 @@
 {% endblock %}
 
 {% block main %}
+
+    {% if user.is_authenticated %}
         <div class="row">
                 <div class="col-12">
                     <p></p>
@@ -52,44 +54,45 @@
                 </div>
         </div>
 
-     <div class="row">
-        <div class="col-sm-6 table-responsive">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Usuário</th>
-                  <th scope="col">Início</th>
-                  <th scope="col">Término</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for anualista in anualistas %}
+         <div class="row">
+            <div class="col-sm-6 table-responsive">
+                <table class="table">
+                  <thead>
                     <tr>
-                      <th scope="row">{{ anualista.id }}</th>
-                      <td ><a href="{% url 'core_anualista_update' anualista.id %}"
-                             class="link-primary"> {{ anualista.usuario }} </a></td>
-                      <td>{{ anualista.inicio }}</td>
-                      <td>{{ anualista.termino }}</td>
+                      <th scope="col">ID</th>
+                      <th scope="col">Usuário</th>
+                      <th scope="col">Início</th>
+                      <th scope="col">Término</th>
                     </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-        </div>
+                  </thead>
+                  <tbody>
+                    {% for anualista in anualistas %}
+                        <tr>
+                          <th scope="row">{{ anualista.id }}</th>
+                          <td ><a href="{% url 'core_anualista_update' anualista.id %}"
+                                 class="link-primary"> {{ anualista.usuario }} </a></td>
+                          <td>{{ anualista.inicio }}</td>
+                          <td>{{ anualista.termino }}</td>
+                        </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+            </div>
 
-        <div class="col-sm-4 offset-md-1">
-            <p></p>
-            <h4 class="text-primary"> Cadastrar</h4>
-            <p></p>
-            <form action="{% url 'core_anualista_novo' %}" method="POST">
-                {% csrf_token %}
-                {{ forms|bootstrap }}
+            <div class="col-sm-4 offset-md-1">
                 <p></p>
-                <button type="submit" class="btn btn-primary">
-                    Cadastrar</button>
-            </form>
-        </div>
-     </div>
+                <h4 class="text-primary"> Cadastrar</h4>
+                <p></p>
+                <form action="{% url 'core_anualista_novo' %}" method="POST">
+                    {% csrf_token %}
+                    {{ forms|bootstrap }}
+                    <p></p>
+                    <button type="submit" class="btn btn-primary">
+                        Cadastrar</button>
+                </form>
+            </div>
+         </div>
+    {% endif %}
 
 {% endblock %}
 

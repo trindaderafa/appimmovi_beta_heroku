@@ -45,52 +45,54 @@
 
 {% block main %}
 
-    <div class="row">
-        <div class="col-12">
-            <p></p>
-             <h3 class="p-1 mb-2 bg-secondary text-white">Lista mensalistas</h3>
-            <p></p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-6 table-responsive">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Usuário</th>
-                  <th scope="col">Início</th>
-                  <th scope="col">Término</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for mensalista in mensalistas %}
-                    <tr>
-                      <th scope="row">{{ mensalista.id }}</th>
-                      <td ><a href="{% url 'core_mensalista_update' mensalista.id %}"
-                             class="link-primary"> {{ mensalista.usuario }} </a></td>
-                      <td>{{ mensalista.inicio }}</td>
-                      <td>{{ mensalista.termino }}</td>
-                    </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-        </div>
-
-        <div class="col-sm-4 offset-md-1">
-            <p></p>
-            <h4 class="text-primary"> Cadastrar</h4>
-            <p></p>
-            <form action="{% url 'core_mensalista_novo' %}" method="POST">
-                {% csrf_token %}
-                {{ forms|bootstrap }}
+    {% if user.is_authenticated %}
+        <div class="row">
+            <div class="col-12">
                 <p></p>
-                <button type="submit" class="btn btn-primary">
-                    Cadastrar</button>
-            </form>
+                 <h3 class="p-1 mb-2 bg-secondary text-white">Lista mensalistas</h3>
+                <p></p>
+            </div>
         </div>
-    </div>
+
+        <div class="row">
+            <div class="col-sm-6 table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">Usuário</th>
+                      <th scope="col">Início</th>
+                      <th scope="col">Término</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for mensalista in mensalistas %}
+                        <tr>
+                          <th scope="row">{{ mensalista.id }}</th>
+                          <td ><a href="{% url 'core_mensalista_update' mensalista.id %}"
+                                 class="link-primary"> {{ mensalista.usuario }} </a></td>
+                          <td>{{ mensalista.inicio }}</td>
+                          <td>{{ mensalista.termino }}</td>
+                        </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+            </div>
+
+            <div class="col-sm-4 offset-md-1">
+                <p></p>
+                <h4 class="text-primary"> Cadastrar</h4>
+                <p></p>
+                <form action="{% url 'core_mensalista_novo' %}" method="POST">
+                    {% csrf_token %}
+                    {{ forms|bootstrap }}
+                    <p></p>
+                    <button type="submit" class="btn btn-primary">
+                        Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    {% endif %}
 
 
 {% endblock %}

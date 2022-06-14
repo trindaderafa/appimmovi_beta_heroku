@@ -1,5 +1,6 @@
 from django.urls import include, path
 from .views import (home,
+                    pesquisa,
                     lista_pessoas,
                     lista_finalidades,
                     lista_diaristas,
@@ -45,6 +46,8 @@ from .views import (home,
 
 urlpatterns = [
     path('', home, name='core_home'),
+    path('pesquisa/', pesquisa, name='core_pesquisa'),
+
 
     path('pessoas/', lista_pessoas, name='core_lista_pessoas'),
     path('pessoa_novo/', pessoa_novo, name='core_pessoa_novo'),

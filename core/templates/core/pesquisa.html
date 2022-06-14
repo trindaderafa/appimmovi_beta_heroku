@@ -1,0 +1,39 @@
+<title>Pesquisa</title>
+
+{%  extends 'base.html' %}
+{% load bootstrap %}
+
+{% block menu %}
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'core_home' %}">Início</a>
+      </li>
+      </li>
+
+    {% if user.is_authenticated %}
+         <li class="nav-item">
+
+             <li>
+                <a class="nav-link disabled" href="">Olá {{ user }}!</a>
+            </li>
+
+        </li>
+
+        <li>
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+        </li>
+
+    {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+        </li>
+    {% endif %}
+    </ul>
+{% endblock %}
+
+{% block main %}
+
+
+
+
+{% endblock %}

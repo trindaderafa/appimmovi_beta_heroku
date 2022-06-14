@@ -11,4 +11,3 @@ python-decouple==3.6
 pytz==2022.1
 sqlparse==0.4.2
 static3-jl==0.6.0
-

@@ -8,93 +8,95 @@
       <li class="nav-item">
         <a class="nav-link active" aria-current="page" href="{% url 'core_home' %}">Início</a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Gestão</a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="{% url 'core_lista_pessoas' %}">Usuários</a></li>
-          <li><a class="dropdown-item" href="{% url 'core_lista_finalidades' %}">Serviços</a></li>
-          <li><a class="dropdown-item" href="{% url 'core_lista_diaristas' %}">Diaristas</a></li>
-          <li><a class="dropdown-item" href="{% url 'core_lista_mensalistas' %}">Mensalistas</a></li>
-          <li><a class="dropdown-item" href="{% url 'core_lista_anualistas' %}">Anualistas</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="{% url 'core_lista_vitalistas' %}">Lic. Vitalícia</a></li>
-        </ul>
-      </li>
 
+      {% if user.is_authenticated %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Gestão</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'core_lista_pessoas' %}">Usuários</a></li>
+              <li><a class="dropdown-item" href="{% url 'core_lista_finalidades' %}">Serviços</a></li>
+              <li><a class="dropdown-item" href="{% url 'core_lista_diaristas' %}">Diaristas</a></li>
+              <li><a class="dropdown-item" href="{% url 'core_lista_mensalistas' %}">Mensalistas</a></li>
+              <li><a class="dropdown-item" href="{% url 'core_lista_anualistas' %}">Anualistas</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'core_lista_vitalistas' %}">Lic. Vitalícia</a></li>
+            </ul>
+          </li>
 
-    {% if user.is_authenticated %}
-         <li class="nav-item">
-            <a class="nav-link disabled" href="">Olá {{ user }}!</a>
-        </li>
+             <li class="nav-item">
+                <a class="nav-link disabled" href="">Olá {{ user }}!</a>
+            </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
 
-    {% else %}
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">Login</a>
-        </li>
+        {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
     {% endif %}
     </ul>
 {% endblock %}
 
 {% block main %}
 
-    <div class="row">
-            <div class="col-12">
-                <p></p>
-                 <h3 class="p-1 mb-2 bg-secondary text-white">Lista atividades anualistas</h3>
-                <p></p>
-            </div>
-    </div>
+    {% if user.is_authenticated %}
+        <div class="row">
+                <div class="col-12">
+                    <p></p>
+                     <h3 class="p-1 mb-2 bg-secondary text-white">Lista atividades anualistas</h3>
+                    <p></p>
+                </div>
+        </div>
 
-     <div class="row">
-        <div class="col-sm-6 table-responsive">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Anualista</th>
-                  <th scope="col">Serviço</th>
-                  <th scope="col">Dias</th>
-                  <th scope="col">Anos</th>
-                  <th scope="col">Valor Anual</th>
-                  <th scope="col">Valor Total</th>
-                  <th scope="col">Pago</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for atividade_ano in atividades_ano %}
+         <div class="row">
+            <div class="col-sm-6 table-responsive">
+                <table class="table">
+                  <thead>
                     <tr>
-                      <th scope="row">{{ atividade_ano.id }}</th>
-                      <td ><a href="{% url 'core_atividade_ano_update' atividade_ano.id %}"
-                             class="link-primary"> {{atividade_ano.anualista}} </a>
-                      </td>
-                      <td>{{ atividade_ano.finalidade }}</td>
-                      <td>{{ atividade_ano.dias_total }}</td>
-                      <td>{{ atividade_ano.anos_total }}</td>
-                      <td>R$ {{ atividade_ano.valor_ano }}</td>
-                      <td>R$ {{ atividade_ano.valor_total }}</td>
-                      <td>{{ atividade_ano.pago }}</td>
+                      <th scope="col">ID</th>
+                      <th scope="col">Anualista</th>
+                      <th scope="col">Serviço</th>
+                      <th scope="col">Dias</th>
+                      <th scope="col">Anos</th>
+                      <th scope="col">Valor Anual</th>
+                      <th scope="col">Valor Total</th>
+                      <th scope="col">Pago</th>
                     </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-        </div>
+                  </thead>
+                  <tbody>
+                    {% for atividade_ano in atividades_ano %}
+                        <tr>
+                          <th scope="row">{{ atividade_ano.id }}</th>
+                          <td ><a href="{% url 'core_atividade_ano_update' atividade_ano.id %}"
+                                 class="link-primary"> {{atividade_ano.anualista}} </a>
+                          </td>
+                          <td>{{ atividade_ano.finalidade }}</td>
+                          <td>{{ atividade_ano.dias_total }}</td>
+                          <td>{{ atividade_ano.anos_total }}</td>
+                          <td>R$ {{ atividade_ano.valor_ano }}</td>
+                          <td>R$ {{ atividade_ano.valor_total }}</td>
+                          <td>{{ atividade_ano.pago }}</td>
+                        </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+            </div>
 
-        <div class="col-sm-4 offset-md-1">
-            <p></p>
-            <h4 class="text-primary"> Cadastrar</h4>
-            <p></p>
-            <form action="{% url 'core_atividade_ano_novo' %}" method="POST">
-                {% csrf_token %}
-                {{ forms|bootstrap }}
+            <div class="col-sm-4 offset-md-1">
                 <p></p>
-                <button type="submit" class="btn btn-primary">
-                    Cadastrar</button>
-            </form>
-        </div>
-     </div>
+                <h4 class="text-primary"> Cadastrar</h4>
+                <p></p>
+                <form action="{% url 'core_atividade_ano_novo' %}" method="POST">
+                    {% csrf_token %}
+                    {{ forms|bootstrap }}
+                    <p></p>
+                    <button type="submit" class="btn btn-primary">
+                        Cadastrar</button>
+                </form>
+            </div>
+         </div>
+    {% endif %}
 
 {% endblock %}

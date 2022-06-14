@@ -45,7 +45,8 @@
 
 {% block main %}
 
- <div class="row">
+    {% if user.is_authenticated %}
+        <div class="row">
                 <div class="col-12">
                     <p></p>
                      <h3 class="p-1 mb-2 bg-secondary text-white">Lista serviços</h3>
@@ -53,39 +54,40 @@
                 </div>
         </div>
 
-     <div class="row">
-        <div class="col-sm-4 table-responsive">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Serviços</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for finalidade in finalidades %}
+         <div class="row">
+            <div class="col-sm-4 table-responsive">
+                <table class="table">
+                  <thead>
                     <tr>
-                      <th scope="row">{{ finalidade.id }}</th>
-                      <td ><a href="{% url 'core_finalidade_update' finalidade.id %}"
-                             class="link-primary"> {{ finalidade.nome }} </a></td>
+                      <th scope="col">ID</th>
+                      <th scope="col">Serviços</th>
                     </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-        </div>
+                  </thead>
+                  <tbody>
+                    {% for finalidade in finalidades %}
+                        <tr>
+                          <th scope="row">{{ finalidade.id }}</th>
+                          <td ><a href="{% url 'core_finalidade_update' finalidade.id %}"
+                                 class="link-primary"> {{ finalidade.nome }} </a></td>
+                        </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+            </div>
 
-        <div class="col-sm-4 offset-md-1">
-            <p></p>
-            <h4 class="text-primary"> Cadastrar</h4>
-            <p></p>
-            <form action="{% url 'core_finalidade_novo' %}" method="POST">
-                {% csrf_token %}
-                {{ forms|bootstrap }}
+            <div class="col-sm-4 offset-md-1">
                 <p></p>
-                <button type="submit" class="btn btn-primary">
-                    Cadastrar</button>
-            </form>
-        </div>
-     </div>
+                <h4 class="text-primary"> Cadastrar</h4>
+                <p></p>
+                <form action="{% url 'core_finalidade_novo' %}" method="POST">
+                    {% csrf_token %}
+                    {{ forms|bootstrap }}
+                    <p></p>
+                    <button type="submit" class="btn btn-primary">
+                        Cadastrar</button>
+                </form>
+            </div>
+         </div>
+    {% endif %}
 
 {% endblock %}

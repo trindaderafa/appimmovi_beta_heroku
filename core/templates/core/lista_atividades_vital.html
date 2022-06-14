@@ -8,6 +8,8 @@
       <li class="nav-item">
         <a class="nav-link active" aria-current="page" href="{% url 'core_home' %}">Início</a>
       </li>
+
+    {% if user.is_authenticated %}
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Gestão</a>
         <ul class="dropdown-menu">
@@ -21,8 +23,6 @@
         </ul>
       </li>
 
-
-    {% if user.is_authenticated %}
          <li class="nav-item">
             <a class="nav-link disabled" href="">Olá {{ user }}!</a>
         </li>
@@ -41,58 +41,60 @@
 
 {% block main %}
 
-<div class="row">
-            <div class="col-12">
-                <p></p>
-                 <h3 class="p-1 mb-2 bg-secondary text-white">Lista atividades vitalistas</h3>
-                <p></p>
-            </div>
-    </div>
+    {% if user.is_authenticated %}
+        <div class="row">
+                <div class="col-12">
+                    <p></p>
+                     <h3 class="p-1 mb-2 bg-secondary text-white">Lista atividades vitalistas</h3>
+                    <p></p>
+                </div>
+        </div>
 
-     <div class="row">
-        <div class="col-sm-6 table-responsive">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Vitalista</th>
-                  <th scope="col">Serviço</th>
-                  <th scope="col">Dias</th>
-                  <th scope="col">Anos</th>
-                  <th scope="col">Valor</th>
-                  <th scope="col">Pago</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for atividade_vital in atividades_vital %}
+         <div class="row">
+            <div class="col-sm-6 table-responsive">
+                <table class="table">
+                  <thead>
                     <tr>
-                      <th scope="row">{{ atividade_vital.id }}</th>
-                      <td ><a href="{% url 'core_atividade_vital_update' atividade_vital.id %}"
-                             class="link-primary"> {{atividade_vital.vitalista}} </a>
-                      </td>
-                      <td>{{ atividade_vital.finalidade }}</td>
-                      <td>{{ atividade_vital.dias_total }}</td>
-                      <td>{{ atividade_vital.anos_total }}</td>
-                      <td>R$ {{ atividade_vital.valor }}</td>
-                      <td>{{ atividade_vital.pago }}</td>
+                      <th scope="col">ID</th>
+                      <th scope="col">Vitalista</th>
+                      <th scope="col">Serviço</th>
+                      <th scope="col">Dias</th>
+                      <th scope="col">Anos</th>
+                      <th scope="col">Valor</th>
+                      <th scope="col">Pago</th>
                     </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-        </div>
+                  </thead>
+                  <tbody>
+                    {% for atividade_vital in atividades_vital %}
+                        <tr>
+                          <th scope="row">{{ atividade_vital.id }}</th>
+                          <td ><a href="{% url 'core_atividade_vital_update' atividade_vital.id %}"
+                                 class="link-primary"> {{atividade_vital.vitalista}} </a>
+                          </td>
+                          <td>{{ atividade_vital.finalidade }}</td>
+                          <td>{{ atividade_vital.dias_total }}</td>
+                          <td>{{ atividade_vital.anos_total }}</td>
+                          <td>R$ {{ atividade_vital.valor }}</td>
+                          <td>{{ atividade_vital.pago }}</td>
+                        </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+            </div>
 
-        <div class="col-sm-4 offset-md-1">
-            <p></p>
-            <h4 class="text-primary"> Cadastrar</h4>
-            <p></p>
-            <form action="{% url 'core_atividade_vital_novo' %}" method="POST">
-                {% csrf_token %}
-                {{ forms|bootstrap }}
+            <div class="col-sm-4 offset-md-1">
                 <p></p>
-                <button type="submit" class="btn btn-primary">
-                    Cadastrar</button>
-            </form>
-        </div>
-     </div>
+                <h4 class="text-primary"> Cadastrar</h4>
+                <p></p>
+                <form action="{% url 'core_atividade_vital_novo' %}" method="POST">
+                    {% csrf_token %}
+                    {{ forms|bootstrap }}
+                    <p></p>
+                    <button type="submit" class="btn btn-primary">
+                        Cadastrar</button>
+                </form>
+            </div>
+         </div>
+    {% endif %}
 
 {% endblock %}

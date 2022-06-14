@@ -28,6 +28,10 @@ def home(request):
     return render(request, 'core/index.html')
 
 
+def pesquisa(request):
+    return render(request, 'core/pesquisa.html')
+
+
 def lista_pessoas(request):
     pessoas = Pessoa.objects.all()
     form = PessoaForm()
