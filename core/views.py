@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 #from django.http import HttpResponse
+from django.contrib.admin.views.decorators import staff_member_required
 from .models import (Pessoa,
                      Finalidade,
                      Diarista,
@@ -31,21 +32,21 @@ def home(request):
 def pesquisa(request):
     return render(request, 'core/pesquisa.html')
 
-
+@staff_member_required
 def lista_pessoas(request):
     pessoas = Pessoa.objects.all()
     form = PessoaForm()
     data = {'usuario': pessoas, 'forms':form}
     return render(request, 'core/lista_pessoas.html', data)
 
-
+@staff_member_required
 def pessoa_novo(request):
     form = PessoaForm(request.POST or None)
     if form.is_valid():
         form.save()
     return redirect('core_lista_pessoas')
 
-
+@staff_member_required
 def pessoa_update(request, id):
     data = {}
     pessoa = Pessoa.objects.get(id=id)
@@ -59,7 +60,7 @@ def pessoa_update(request, id):
     else:
         return render(request, 'core/update_pessoa.html', data)
 
-
+@staff_member_required
 def pessoa_delete(request, id):
     pessoa = Pessoa.objects.get(id=id)
     if request.method == 'POST':
@@ -68,21 +69,21 @@ def pessoa_delete(request, id):
     else:
         return render(request, 'core/delete_confirm.html', {'obj':pessoa})
 
-
+@staff_member_required
 def lista_finalidades(request):
     finalidade = Finalidade.objects.all()
     form = FinalidadeForm()
     data = {'finalidades': finalidade, 'forms':form}
     return render(request, 'core/lista_finalidades.html', data)
 
-
+@staff_member_required
 def finalidade_novo(request):
     form = FinalidadeForm(request.POST or None)
     if form.is_valid():
         form.save()
     return redirect('core_lista_finalidades')
 
-
+@staff_member_required
 def finalidade_update(request, id):
     data = {}
     finalidade = Finalidade.objects.get(id=id)
@@ -96,7 +97,7 @@ def finalidade_update(request, id):
     else:
         return render(request, 'core/update_finalidade.html', data)
 
-
+@staff_member_required
 def finalidade_delete(request, id):
     finalidade = Finalidade.objects.get(id=id)
     if request.method == 'POST':
@@ -105,21 +106,21 @@ def finalidade_delete(request, id):
     else:
         return render(request, 'core/delete_confirm.html', {'obj':finalidade})
 
-
+@staff_member_required
 def lista_diaristas(request):
     diarista = Diarista.objects.all()
     form = DiaristaForm()
     data = {'diaristas': diarista, 'forms':form}
     return render(request, 'core/lista_diaristas.html', data)
 
-
+@staff_member_required
 def diarista_novo(request):
     form = DiaristaForm(request.POST or None)
     if form.is_valid():
         form.save()
     return redirect('core_lista_diaristas')
 
-
+@staff_member_required
 def diarista_update(request, id):
     data = {}
     diarista = Diarista.objects.get(id=id)
@@ -133,7 +134,7 @@ def diarista_update(request, id):
     else:
         return render(request, 'core/update_diarista.html', data)
 
-
+@staff_member_required
 def diarista_delete(request, id):
     diarista = Diarista.objects.get(id=id)
     if request.method == 'POST':
@@ -142,21 +143,21 @@ def diarista_delete(request, id):
     else:
         return render(request, 'core/delete_confirm.html', {'obj': diarista})
 
-
+@staff_member_required
 def lista_atividades_dia(request):
     atividade_dia = AtividadeDia.objects.all()
     form = AtividadeDiaForm()
     data = {'atividades_dia': atividade_dia, 'forms':form}
     return render(request, 'core/lista_atividades_dia.html', data)
 
-
+@staff_member_required
 def atividade_dia_novo(request):
     form = AtividadeDiaForm(request.POST or None)
     if form.is_valid():
         form.save()
     return redirect('core_lista_atividades_dia')
 
-
+@staff_member_required
 def atividade_dia_update(request, id):
     data = {}
     atividade_dia = AtividadeDia.objects.get(id=id)
@@ -170,7 +171,7 @@ def atividade_dia_update(request, id):
     else:
         return render(request, 'core/update_atividade_dia.html', data)
 
-
+@staff_member_required
 def atividade_dia_delete(request, id):
     atividade_dia = AtividadeDia.objects.get(id=id)
     if request.method == 'POST':
@@ -180,21 +181,21 @@ def atividade_dia_delete(request, id):
         return render(request, 'core/delete_confirm.html',
                       {'obj':atividade_dia})
 
-
+@staff_member_required
 def lista_mensalistas(request):
     mensalista = Mensalista.objects.all()
     form = MensalistaForm()
     data = {'mensalistas': mensalista, 'forms':form}
     return render(request, 'core/lista_mensalistas.html', data)
 
-
+@staff_member_required
 def mensalista_novo(request):
     form = MensalistaForm(request.POST or None)
     if form.is_valid():
         form.save()
     return redirect('core_lista_mensalistas')
 
-
+@staff_member_required
 def mensalista_update(request, id):
     data = {}
     mensalista = Mensalista.objects.get(id=id)
@@ -208,7 +209,7 @@ def mensalista_update(request, id):
     else:
         return render(request, 'core/update_mensalista.html', data)
 
-
+@staff_member_required
 def mensalista_delete(request, id):
     mensalista = Mensalista.objects.get(id=id)
     if request.method == 'POST':
@@ -217,21 +218,21 @@ def mensalista_delete(request, id):
     else:
         return render(request, 'core/delete_confirm.html', {'obj':mensalista})
 
-
+@staff_member_required
 def lista_atividades_mes(request):
     atividade_mes = AtividadeMes.objects.all()
     form = AtividadeMesForm()
     data = {'atividades_mes': atividade_mes, 'forms':form}
     return render(request, 'core/lista_atividades_mes.html', data)
 
-
+@staff_member_required
 def atividade_mes_novo(request):
     form = AtividadeMesForm(request.POST or None)
     if form.is_valid():
         form.save()
     return redirect('core_lista_atividades_mes')
 
-
+@staff_member_required
 def atividade_mes_update(request, id):
     data = {}
     atividade_mes = AtividadeMes.objects.get(id=id)
@@ -245,7 +246,7 @@ def atividade_mes_update(request, id):
     else:
         return render(request, 'core/update_atividade_mes.html', data)
 
-
+@staff_member_required
 def atividade_mes_delete(request, id):
     atividade_mes = AtividadeMes.objects.get(id=id)
     if request.method == 'POST':
@@ -255,21 +256,21 @@ def atividade_mes_delete(request, id):
         return render(request, 'core/delete_confirm.html',
                       {'obj':atividade_mes})
 
-
+@staff_member_required
 def lista_anualistas(request):
     anualista = Anualista.objects.all()
     form = AnualistaForm()
     data = {'anualistas': anualista, 'forms':form}
     return render(request, 'core/lista_anualistas.html', data)
 
-
+@staff_member_required
 def anualista_novo(request):
     form = AnualistaForm(request.POST or None)
     if form.is_valid():
         form.save()
     return redirect('core_lista_anualistas')
 
-
+@staff_member_required
 def anualista_update(request, id):
     data = {}
     anualista = Anualista.objects.get(id=id)
@@ -283,7 +284,7 @@ def anualista_update(request, id):
     else:
         return render(request, 'core/update_anualista.html', data)
 
-
+@staff_member_required
 def anualista_delete(request, id):
     anualista = Anualista.objects.get(id=id)
     if request.method == 'POST':
@@ -292,21 +293,21 @@ def anualista_delete(request, id):
     else:
         return render(request, 'core/delete_confirm.html', {'obj':anualista})
 
-
+@staff_member_required
 def lista_atividades_ano(request):
     atividade_ano = AtividadeAno.objects.all()
     form = AtividadeAnoForm()
     data = {'atividades_ano': atividade_ano, 'forms':form}
     return render(request, 'core/lista_atividades_ano.html', data)
 
-
+@staff_member_required
 def atividade_ano_novo(request):
     form = AtividadeAnoForm(request.POST or None)
     if form.is_valid():
         form.save()
     return redirect('core_lista_atividades_ano')
 
-
+@staff_member_required
 def atividade_ano_update(request, id):
     data = {}
     atividade_ano = AtividadeAno.objects.get(id=id)
@@ -320,7 +321,7 @@ def atividade_ano_update(request, id):
     else:
         return render(request, 'core/update_atividade_ano.html', data)
 
-
+@staff_member_required
 def atividade_ano_delete(request, id):
     atividade_ano = AtividadeAno.objects.get(id=id)
     if request.method == 'POST':
@@ -330,21 +331,21 @@ def atividade_ano_delete(request, id):
         return render(request, 'core/delete_confirm.html',
                       {'obj':atividade_ano})
 
-
+@staff_member_required
 def lista_vitalistas(request):
     vitalista = Vitalista.objects.all()
     form = VitalistaForm()
     data = {'vitalistas': vitalista, 'forms':form}
     return render(request, 'core/lista_vitalistas.html', data)
 
-
+@staff_member_required
 def vitalista_novo(request):
     form = VitalistaForm(request.POST or None)
     if form.is_valid():
         form.save()
     return redirect('core_lista_vitalistas')
 
-
+@staff_member_required
 def vitalista_update(request, id):
     data = {}
     vitalista = Vitalista.objects.get(id=id)
@@ -358,7 +359,7 @@ def vitalista_update(request, id):
     else:
         return render(request, 'core/update_vitalista.html', data)
 
-
+@staff_member_required
 def vitalista_delete(request, id):
     vitalista = Vitalista.objects.get(id=id)
     if request.method == 'POST':
@@ -367,21 +368,21 @@ def vitalista_delete(request, id):
     else:
         return render(request, 'core/delete_confirm.html', {'obj':vitalista})
 
-
+@staff_member_required
 def lista_atividades_vital(request):
     atividade_vital = AtividadeVital.objects.all()
     form = AtividadeVitalForm()
     data = {'atividades_vital': atividade_vital, 'forms':form}
     return render(request, 'core/lista_atividades_vital.html', data)
 
-
+@staff_member_required
 def atividade_vital_novo(request):
     form = AtividadeVitalForm(request.POST or None)
     if form.is_valid():
         form.save()
     return redirect('core_lista_atividades_vital')
 
-
+@staff_member_required
 def atividade_vital_update(request, id):
     data = {}
     atividade_vital = AtividadeVital.objects.get(id=id)
@@ -395,7 +396,7 @@ def atividade_vital_update(request, id):
     else:
         return render(request, 'core/update_atividade_vital.html', data)
 
-
+@staff_member_required
 def atividade_vital_delete(request, id):
     atividade_vital = AtividadeVital.objects.get(id=id)
     if request.method == 'POST':
@@ -404,5 +405,4 @@ def atividade_vital_delete(request, id):
     else:
         return render(request, 'core/delete_confirm.html',
                       {'obj':atividade_vital})
-
 
