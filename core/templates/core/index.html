@@ -37,6 +37,19 @@
             </ul>
             </li>
 
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                   role="button" aria-expanded="false" id="gestao-sistema">Gestão</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'core_lista_pessoas' %}">Usuários</a></li>
+              <li><a class="dropdown-item" href="{% url 'core_lista_finalidades' %}">Serviços</a></li>
+              <li><a class="dropdown-item" href="{% url 'core_lista_diaristas' %}">Diaristas</a></li>
+              <li><a class="dropdown-item" href="{% url 'core_lista_mensalistas' %}">Mensalistas</a></li>
+              <li><a class="dropdown-item" href="{% url 'core_lista_anualistas' %}">Anualistas</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'core_lista_vitalistas' %}">Lic. Vitalícia</a></li>
+            </ul>
+
         </li>
 
         <li>
