@@ -1,6 +1,6 @@
 ### Resumo do projeto
 Versão beta de aplicação SaaS para avaliações imobiliárias, incluindo autenticação/autorização de usuários, gestão de recursos, serviços e assinantes.
-Foi utilizado framework Django e linguagens Python, Html/CSS/Js, Jinja e Bootstrap, versionamento em Git, deploy em Heroku/AWS.
+Foi utilizado framework Django e linguagens Python, Html/CSS/JS, Jinja e Bootstrap, versionamento em Git, deploy em Heroku/AWS.
 
 #### Tela de Login
 ![Tela Login](https://github.com/user-attachments/assets/98f61f5f-b170-4e08-98bc-8095e549cb10)
